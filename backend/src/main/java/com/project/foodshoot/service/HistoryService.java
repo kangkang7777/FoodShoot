@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface HistoryService {
     List<Integer> getHistory(String userId);
+
+    void addHistory(int historyId, int recipeId, int userId);
 }
