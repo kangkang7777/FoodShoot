@@ -4,9 +4,6 @@
     <list default="true" id="d8fe8769-8b94-4511-8284-1be19e9aa876" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/controller/RecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/mapper/RecipeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/mapper/RecipeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/service/RecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/service/RecipeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/service/impl/RecipeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/foodshoot/service/impl/RecipeServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
       <updated>1592286152490</updated>
       <workItem from="1592286155257" duration="13284000" />
       <workItem from="1592301414369" duration="5787000" />
-      <workItem from="1592307513087" duration="1845000" />
+      <workItem from="1592307513087" duration="1968000" />
     </task>
     <servers />
   </component>

@@ -95,9 +95,9 @@ public class RecipeController {
     public Recipe getRecipeRandomly(){
         return recipeService.getRecipeRandomly();
     }
-    
+
     @DeleteMapping(value = "/{recipeId}")
-    public void deleteCommentsByRecipeId(@PathVariable int recipeId){
+    public void deleteRecipeByRecipeId(@PathVariable int recipeId){
         recipeService.deleteRecipeByRecipeId(recipeId);
     }
 }
