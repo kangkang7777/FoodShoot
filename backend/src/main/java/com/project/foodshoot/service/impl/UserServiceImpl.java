@@ -14,15 +14,55 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public Map<String, Object> login(String email, String password){
+    @Override
+    public boolean register(String email, String password) {
+        return userMapper.insertUser(email,password);
+    }
+
+    public boolean login(String email, String password){
         User user = userMapper.getUserByEmailAndPassword(email, password);
+        return user != null;
+    }
+
+    @Override
+    public Map<String, Object> getInformation(String email) {
+        User user = userMapper.getUserByEmail(email);
         Map<String, Object> map = new HashMap<>();
         if (user == null){
             map.put("status", false);
         }else {
-            map.put("user", user);
-            map.put("status", true);
+            map.put("name", user.getName());
+            map.put("age", user.getAge());
         }
         return map;
     }
+
+    @Override
+    public String getEmail(String userId) {
+        User user = userMapper.getUserByUserId(userId);
+        if(user != null)
+            return user.getEmail();
+        else
+            return null;
+    }
+
+    @Override
+    public int getUserId(String email) {
+        User user = userMapper.getUserByEmail(email);
+        if(user != null)
+            return user.getUserId();
+        else
+            return -1;
+    }
+
+    @Override
+    public boolean alterInformation(String email, String name, String age) {
+        return userMapper.updateInformation(email,name,age);
+    }
+
+    @Override
+    public boolean alterPassword(String email, String password) {
+        return userMapper.updatePassword(email,password);
+    }
+
 }
