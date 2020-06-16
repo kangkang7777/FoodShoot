@@ -31,6 +31,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public  Recipe getRecipeRandomly(){
+        return recipeMapper.getRecipeRandomly();
+    }
+
+    @Override
     public List<Recipe> getRecipeByUser(int userId){
         return recipeMapper.getRecipeByUser(userId);
     }

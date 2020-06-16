@@ -82,15 +82,20 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/{recipeId}")
-    public Recipe getCommentsByUserId(@PathVariable int recipeId){
+    public Recipe getRecipeByRecipeID(@PathVariable int recipeId){
         return recipeService.getRecipeByRecipeId(recipeId);
     }
 
     @GetMapping(value = "/user/{userId}")
-    public List<Recipe> getCommentsByRecipeId(@PathVariable int userId){
+    public List<Recipe> getRecipeByUser(@PathVariable int userId){
         return recipeService.getRecipeByUser(userId);
     }
 
+    @GetMapping(value = "/random")
+    public Recipe getRecipeRandomly(){
+        return recipeService.getRecipeRandomly();
+    }
+    
     @DeleteMapping(value = "/{recipeId}")
     public void deleteCommentsByRecipeId(@PathVariable int recipeId){
         recipeService.deleteRecipeByRecipeId(recipeId);

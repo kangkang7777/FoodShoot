@@ -32,4 +32,17 @@ public interface RecipeMapper {
     @Select("select * from recipe where user_id=#{userId}")
     List<Recipe> getRecipeByUser(int userId);
 
+    @Select("SELECT * FROM recipe ORDER BY RAND() LIMIT 1")
+    @Results({
+            @Result(column = "publisher_id", property = "publisherId"),
+            @Result(column = "recipe_id", property = "recipeId"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "image", property = "image"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "likes", property = "likes"),
+            @Result(column = "collections", property = "collections"),
+            @Result(column = "if_recipe", property = "if_recipe")
+    })
+    Recipe getRecipeRandomly();
+
 }

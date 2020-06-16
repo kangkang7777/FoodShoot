@@ -12,5 +12,7 @@ public interface RecipeService {
 
     Recipe getRecipeByRecipeId(int recipeId);
 
+    Recipe getRecipeRandomly();
+
     List<Recipe> getRecipeByUser(int userId);
 }
