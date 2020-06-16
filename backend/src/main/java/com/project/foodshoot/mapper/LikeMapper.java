@@ -16,6 +16,11 @@ public interface LikeMapper {
     void deleteLike(int recipeId, int likerId);
 
     @Select("select * from likes where liker_id=#{likerId}")
+    @Results({
+            @Result(column = "like_id", property = "likeId"),
+            @Result(column = "recipe_id", property = "recipeId"),
+            @Result(column = "liker_id", property = "likerId")
+    })
     List<Like> getLikesByLikerId(int likerId);
 
     @Select("select * from likes where recipe_id=#{recipeId} and liker_id=#{likerId}")

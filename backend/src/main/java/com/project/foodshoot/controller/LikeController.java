@@ -1,12 +1,11 @@
 package com.project.foodshoot.controller;
 
+import com.project.foodshoot.entity.Recipe;
 import com.project.foodshoot.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-
 @RestController
 @RequestMapping(value = "/likes")
 public class LikeController {
@@ -23,8 +22,8 @@ public class LikeController {
         likeService.cancelUpvote(recipeId, likerId);
     }
 
-    @GetMapping(value = "/likerId")
-    public List<Map<String, Object>> getLikeRecipe(@PathVariable int likerId){
+    @GetMapping(value = "/{likerId}")
+    public List<Recipe> getLikeRecipe(@PathVariable int likerId){
         return likeService.getLikeRecipe(likerId);
     }
 

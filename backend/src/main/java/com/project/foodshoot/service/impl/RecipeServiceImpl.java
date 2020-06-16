@@ -44,4 +44,19 @@ public class RecipeServiceImpl implements RecipeService {
     public boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description){
         return recipeMapper.alterRecipe(publisherId,recipeID,title,uploadPathDB,description);
     }
+
+    //点赞有关，供LikeService调用
+    public void addLikes(int recipeId){
+        Recipe recipe = recipeMapper.getRecipeByRecipeId(recipeId);
+        int likes = recipe.getLikes();
+        likes = likes + 1;
+        recipeMapper.alterLikes(likes, recipeId);
+    }
+
+    public void cancelLikes(int recipeId){
+        Recipe recipe = recipeMapper.getRecipeByRecipeId(recipeId);
+        int likes = recipe.getLikes();
+        likes = likes - 1;
+        recipeMapper.alterLikes(likes, recipeId);
+    }
 }

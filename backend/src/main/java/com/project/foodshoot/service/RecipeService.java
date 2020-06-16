@@ -17,4 +17,8 @@ public interface RecipeService {
     List<Recipe> getRecipeByUser(int userId);
 
     boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description);
+
+    void addLikes(int recipeId);
+
+    void cancelLikes(int recipeId);
 }
