@@ -17,4 +17,9 @@ public class HistoryController {
     public List<Integer> getHistories(@RequestParam String userId){
         return historyService.getHistory(userId);
     }
+
+    @PostMapping(value = "/updateHistory")
+    public void addHistory(@RequestParam int historyId, @RequestParam int userId, @RequestParam int recipeId){
+        historyService.addHistory(historyId, userId, recipeId);
+    }
 }
