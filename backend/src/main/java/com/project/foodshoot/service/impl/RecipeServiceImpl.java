@@ -39,4 +39,9 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> getRecipeByUser(int userId){
         return recipeMapper.getRecipeByUser(userId);
     }
+
+    @Override
+    public boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description){
+        return recipeMapper.alterRecipe(publisherId,recipeID,title,uploadPathDB,description);
+    }
 }

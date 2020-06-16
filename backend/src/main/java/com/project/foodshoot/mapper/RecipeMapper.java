@@ -45,4 +45,8 @@ public interface RecipeMapper {
     })
     Recipe getRecipeRandomly();
 
+    @Update("update recipe set title=#{title},image=#{uploadPathDB},description=#{description} " +
+            "where recipe_id=#{recipeID} and publisher_id=#{publisherID}")
+    boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description);
+
 }

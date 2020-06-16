@@ -15,4 +15,6 @@ public interface RecipeService {
     Recipe getRecipeRandomly();
 
     List<Recipe> getRecipeByUser(int userId);
+
+    boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description);
 }
