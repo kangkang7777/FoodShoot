@@ -19,4 +19,6 @@ public interface HistoryMapper {
     })
     List<History> getAllFHistoryByUserId(String userId);
 
+    @Insert("insert into history(history_id,recipe_id,user_id,visit_time) values(#{historyId},#{recipeId},#{userId},#{visitTime})")
+    void addHistory(int historyId, int recipeId, int userId, String visitTime);
 }
