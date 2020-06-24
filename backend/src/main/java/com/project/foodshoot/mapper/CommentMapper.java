@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface CommentMapper {
     @Insert("insert into comment(commentator_id,recipe_id,content,publish_time) values(#{userId},#{recipeId},#{content},#{time})")
-    void addComment(int userId, int recipeId, String content, String time);
+    boolean addComment(int userId, int recipeId, String content, String time);
 
     //查询某个食谱/动态下的所有评论
     @Select("select * from comment where recipe_id=#{recipeId}")
@@ -32,9 +32,9 @@ public interface CommentMapper {
     })
     List<Comment> getCommentsByUserId(int userId);
 
-    @Delete("delete from comment where comment_id={commentId}")
-    void deleteCommentByCommentId(int commentId);
+    @Delete("delete from comment where comment_id=#{commentId}")
+    boolean deleteCommentByCommentId(int commentId);
 
-    @Delete("delete from comment where recipe_id={recipeId}")
-    void deleteCommentsByRecipeId(int recipeId);
+    @Delete("delete from comment where recipe_id=#{recipeId}")
+    boolean deleteCommentsByRecipeId(int recipeId);
 }

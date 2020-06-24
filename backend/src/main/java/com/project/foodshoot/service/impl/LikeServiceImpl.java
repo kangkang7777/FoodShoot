@@ -14,24 +14,33 @@ import java.util.List;
 
 @Service
 public class LikeServiceImpl implements LikeService {
-
     @Autowired
     private LikeMapper likeMapper;
     @Autowired
     private RecipeService recipeService;
 
-    public void upvote(int recipeId, int likerId){
-
+    public boolean upvote(int recipeId, int likerId){
         //此处还应调用食谱服务的相关逻辑，增加食谱的点赞数量
-        recipeService.addLikes(recipeId);
-        likeMapper.addLike(recipeId, likerId);
+        //判断是否已经点赞过，防止重复点赞
+        if (likeMapper.getLikeByRecipeIdAndLikerId(recipeId, likerId) != null){
+            return false;
+        }
+        if (recipeService.addLikes(recipeId)){
+            return likeMapper.addLike(recipeId, likerId);
+        }
+        return false;
     }
 
-    public void cancelUpvote(int recipeId, int likerId){
-
+    public boolean cancelUpvote(int recipeId, int likerId){
         //同上,需要修改食谱表中的点赞数量
-        recipeService.cancelLikes(recipeId);
-        likeMapper.deleteLike(recipeId, likerId);
+        //判断是否点赞过，如果未点赞则不可取消点赞
+        if (likeMapper.getLikeByRecipeIdAndLikerId(recipeId, likerId) == null){
+            return false;
+        }
+        if (recipeService.cancelLikes(recipeId)){
+            return likeMapper.deleteLike(recipeId, likerId);
+        }
+        return false;
     }
 
     public List<Recipe> getLikeRecipe(int likerId){
@@ -48,6 +57,4 @@ public class LikeServiceImpl implements LikeService {
     public boolean ifUpvote(int recipeId, int likerId){
         return likeMapper.getLikeByRecipeIdAndLikerId(recipeId, likerId) != null;
     }
-
-
 }

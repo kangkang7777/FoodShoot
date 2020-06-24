@@ -13,13 +13,13 @@ public class LikeController {
     private LikeService likeService;
 
     @PostMapping
-    public void upvote(@RequestParam int recipeId, @RequestParam int likerId){
-        likeService.upvote(recipeId, likerId);
+    public boolean upvote(@RequestParam int recipeId, @RequestParam int likerId){
+        return likeService.upvote(recipeId, likerId);
     }
 
     @DeleteMapping(value = "/{recipeId}/{likerId}")
-    public void cancelUpvote(@PathVariable int recipeId, @PathVariable int likerId){
-        likeService.cancelUpvote(recipeId, likerId);
+    public boolean cancelUpvote(@PathVariable int recipeId, @PathVariable int likerId){
+        return likeService.cancelUpvote(recipeId, likerId);
     }
 
     @GetMapping(value = "/{likerId}")

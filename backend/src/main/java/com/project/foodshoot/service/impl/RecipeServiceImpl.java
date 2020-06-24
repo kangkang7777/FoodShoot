@@ -46,17 +46,23 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     //点赞有关，供LikeService调用
-    public void addLikes(int recipeId){
+    public boolean addLikes(int recipeId){
         Recipe recipe = recipeMapper.getRecipeByRecipeId(recipeId);
+        if (recipe == null){
+            return false;
+        }
         int likes = recipe.getLikes();
         likes = likes + 1;
-        recipeMapper.alterLikes(likes, recipeId);
+        return recipeMapper.alterLikes(likes, recipeId);
     }
 
-    public void cancelLikes(int recipeId){
+    public boolean cancelLikes(int recipeId){
         Recipe recipe = recipeMapper.getRecipeByRecipeId(recipeId);
+        if (recipe == null){
+            return false;
+        }
         int likes = recipe.getLikes();
         likes = likes - 1;
-        recipeMapper.alterLikes(likes, recipeId);
+        return recipeMapper.alterLikes(likes, recipeId);
     }
 }
