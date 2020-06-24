@@ -9,9 +9,9 @@ import java.util.Map;
 
 @Service
 public interface LikeService {
-    void upvote(int recipeId, int likerId);
+    boolean upvote(int recipeId, int likerId);
 
-    void cancelUpvote(int recipeId, int likerId);
+    boolean cancelUpvote(int recipeId, int likerId);
 
     List<Recipe> getLikeRecipe(int likerId);
 

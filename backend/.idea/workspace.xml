@@ -4,6 +4,7 @@
     <list default="true" id="d8fe8769-8b94-4511-8284-1be19e9aa876" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +72,9 @@
       <workItem from="1592301414369" duration="5787000" />
       <workItem from="1592307513087" duration="3167000" />
       <workItem from="1592367504152" duration="1816000" />
+      <workItem from="1592884680377" duration="566000" />
+      <workItem from="1592906367588" duration="14783000" />
+      <workItem from="1592962371957" duration="26000" />
     </task>
     <servers />
   </component>

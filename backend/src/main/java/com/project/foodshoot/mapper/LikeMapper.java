@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public interface LikeMapper {
     @Insert("insert into likes(recipe_id,liker_id) values(#{recipeId},#{likerId})")
-    void addLike(int recipeId, int likerId);
+    boolean addLike(int recipeId, int likerId);
 
     @Delete("delete from likes where recipe_id=#{recipeId} and liker_id=#{likerId}")
-    void deleteLike(int recipeId, int likerId);
+    boolean deleteLike(int recipeId, int likerId);
 
     @Select("select * from likes where liker_id=#{likerId}")
     @Results({

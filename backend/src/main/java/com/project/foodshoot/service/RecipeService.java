@@ -18,7 +18,7 @@ public interface RecipeService {
 
     boolean alterRecipe(int publisherId,int recipeID,String title,String uploadPathDB,String description);
 
-    void addLikes(int recipeId);
+    boolean addLikes(int recipeId);
 
-    void cancelLikes(int recipeId);
+    boolean cancelLikes(int recipeId);
 }

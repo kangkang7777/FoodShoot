@@ -14,8 +14,8 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping
-    public void addComment(@RequestParam int userId, @RequestParam int recipeId, @RequestParam String content){
-        commentService.addComment(userId, recipeId, content);
+    public boolean addComment(@RequestParam int userId, @RequestParam int recipeId, @RequestParam String content){
+        return commentService.addComment(userId, recipeId, content);
     }
 
     @GetMapping(value = "/{recipeId}")
@@ -29,12 +29,12 @@ public class CommentController {
     }
 
     @DeleteMapping(value = "/recipe/{recipeId}")
-    public void deleteCommentsByRecipeId(int recipeId){
-        commentService.deleteCommentsByRecipeId(recipeId);
+    public boolean deleteCommentsByRecipeId(int recipeId){
+        return commentService.deleteCommentsByRecipeId(recipeId);
     }
 
     @DeleteMapping(value = "/{commentId}")
-    public void deleteCommentByCommentId(int commentId){
-        commentService.deleteCommentByCommentId(commentId);
+    public boolean deleteCommentByCommentId(int commentId){
+        return commentService.deleteCommentByCommentId(commentId);
     }
 }
