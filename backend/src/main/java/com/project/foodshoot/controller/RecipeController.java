@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -21,6 +22,9 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
+
+    // 文件保存的命名空间
+    String fileSpace = "/Users/youhao/FoodShoot";
 
     @ApiOperation(value="添加食谱", notes="添加食谱的接口")
     @ApiImplicitParams({
@@ -38,11 +42,9 @@ public class RecipeController {
                                        @ApiParam(value="图片", required=true)
                                                MultipartFile file) throws Exception {
 
-        // 文件保存的命名空间
-        String fileSpace = "/Users/FoodShoot";
-        // 保存到数据库中的相对路径
-        String uploadPathDB = "/" + publisherId + "/video";
 
+        // 保存到数据库中的相对路径
+        String uploadPathDB = "/" + publisherId + "/photo";
         FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
         // 文件上传的最终保存路径
@@ -60,6 +62,7 @@ public class RecipeController {
                     outFile.getParentFile().mkdirs();
                 }
 
+                outFile.getParentFile().mkdirs();
                 fileOutputStream = new FileOutputStream(outFile);
                 inputStream = file.getInputStream();
                 IOUtils.copy(inputStream, fileOutputStream);
@@ -89,6 +92,7 @@ public class RecipeController {
     //根据userID获取全部食谱
     @GetMapping(value = "/user/{userId}")
     public List<Recipe> getRecipeByUser(@PathVariable int userId){
+        System.out.println(recipeService.getRecipeByUser(userId));
         return recipeService.getRecipeByUser(userId);
     }
     //随机获取食谱
@@ -109,14 +113,12 @@ public class RecipeController {
                     dataType="String", paramType="form")
     })
     @PostMapping(value="/alter", headers="content-type=multipart/form-data")
-    public String alterRecipe(int publisherId, int recipeID,String title, String description,
+    public String alterRecipe(int publisherId, int recipeId,String title, String description,
                               @ApiParam(value="图片", required=true)
                                       MultipartFile file) throws Exception {
 
-        // 文件保存的命名空间
-        String fileSpace = "/Users/FoodShoot";
         // 保存到数据库中的相对路径
-        String uploadPathDB = "/" + publisherId + "/video";
+        String uploadPathDB = "/" + publisherId + "/photo";
 
         FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
@@ -135,9 +137,11 @@ public class RecipeController {
                     outFile.getParentFile().mkdirs();
                 }
 
+                outFile.getParentFile().mkdirs();
                 fileOutputStream = new FileOutputStream(outFile);
                 inputStream = file.getInputStream();
                 IOUtils.copy(inputStream, fileOutputStream);
+
 
             } else {
                 return "上传出错...";
@@ -152,7 +156,7 @@ public class RecipeController {
             }
         }
 
-        recipeService.alterRecipe(publisherId,recipeID,title,uploadPathDB,description);
+        recipeService.alterRecipe(publisherId,recipeId,title,uploadPathDB,description);
         return "success";
     }
 
