@@ -1,0 +1,39 @@
+page{
+  height: 100%;
+}
+.userinfo {
+	display: flex;
+	flex-direction: column;
+	padding: 50rpx 0;
+	align-items: center;
+	background: #7e7ce9;
+  width: 750rpx;
+  margin-bottom: 20rpx
+}
+
+.userinfo-avatar {
+	width: 160rpx;
+	height: 160rpx;
+	margin: 20rpx;
+	border-radius: 50%;
+}
+
+.userinfo-nickname {
+  margin-top: 20rpx;
+  color: #FFF;
+}
+
+.my-item{
+    background-size: 16rpx auto;
+    background-color: white;
+    width: 100%;
+    margin: 0; 
+    border-bottom: 1px solid #eee;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.my-item navigator{
+    padding-left: 60rpx;
+    font-size:34rpx;
+}

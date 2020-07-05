@@ -1,0 +1,21 @@
+<!--pages/topic/index.wxml-->
+<view class="container">
+  <view wx:for="{{topicList}}" wx:key="{{index}}">
+    <view class='news-box'>
+      <view class="news-summary">
+        <image class="topic-pic" src="{{item}}" wx:for="{{item.picUrls}}"></image>
+      </view>
+      <view class="news-title">
+        {{item.title}}
+      </view>
+      <view class='news-date'>
+        <view class="news-liked">{{item.createTime}}</view>
+        <view class="news-liked">
+          <text>{{item.likeNumber}}点赞    {{item.replyNumber}}评论</text>
+        </view>
+      </view>
+      <button bindtap="del" data-id="{{item.id}}">删除</button>
+    </view>
+  </view>
+  <image class="add" src="/images/add.png" bindtap="addTopic" hidden="true"></image>
+</view>

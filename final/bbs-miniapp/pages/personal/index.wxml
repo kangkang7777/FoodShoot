@@ -1,0 +1,18 @@
+<view class="container">
+	<view class="userinfo">
+    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
+		<text class="userinfo-nickname">{{ userInfo.nickname }}</text>
+	</view>
+  <view class="my-item">
+    <navigator url="/pages/user-info/index" hover-class="navigator-hover">个人信息</navigator>
+  </view>
+  <view class="my-item">
+    <navigator url="/pages/collect/index" hover-class="navigator-hover">我的收藏</navigator>
+  </view>
+  <view class="my-item">
+    <navigator url="/pages/follow/index" hover-class="navigator-hover">我的关注</navigator>
+  </view>
+  <view class="my-item">
+    <navigator url="/pages/my-topic/index" hover-class="navigator-hover">我的发布</navigator>
+  </view>
+</view>

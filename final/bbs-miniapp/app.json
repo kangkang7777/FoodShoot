@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/topic/index",
+    "pages/personal/index",
+    "pages/auth/index",
+    "pages/user-info/index",
+    "pages/evaluation/index",
+    "pages/topic-detail/index",
+    "pages/comment/index",
+    "pages/comment-list/index",
+    "pages/topic-add/index",
+    "pages/liked/index",
+    "pages/collect/index",
+    "pages/follow/index",
+    "pages/my-topic/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "美食拍-美食分享社区",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#e64340",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "box-shadow": "0 0 6px 0",
+    "list": [
+      {
+        "pagePath": "pages/topic/index",
+        "iconPath": "images/nav/topic-off.png",
+        "selectedIconPath": "images/nav/topic-on.png",
+        "text": "美食主页"
+      },
+      {
+        "pagePath": "pages/topic-add/index",
+        "iconPath": "images/nav/publish-off.png",
+        "selectedIconPath": "images/nav/publish-on.png",
+        "text": "美食发布"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "iconPath": "images/nav/personal-off.png",
+        "selectedIconPath": "images/nav/personal-on.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "plugins": {
+    
+  },
+  "sitemapLocation": "sitemap.json"
+}

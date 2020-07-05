@@ -1,0 +1,56 @@
+<!--pages/news-detail/index.wxml-->
+<view class='container'>
+  <view class='news-container'>
+    <view class='weui-flex user-info'>
+      <image src='{{topic.user.avatarUrl}}'></image>
+      <view class="info">
+        <view class='nick-name'>{{topic.user.nickname}}</view>
+        <view class='create-time'>{{topic.createTime}}</view>
+      </view>
+      <view class="follow">
+        <image src="/images/follow-off.png" wx:if="{{!isFollow}}" bindtap="follow"></image>
+        <image src="/images/follow-on.png" wx:if="{{isFollow}}" bindtap="follow"></image>
+      </view>
+    </view>
+    <view class="news-summary">
+      <image class="topic-pic" src="{{item}}" wx:for="{{topic.picUrls}}"></image>
+    </view>
+    <view class="news-title">
+      {{topic.title}}
+    </view>
+    <view class='news-date'>
+      <view class="news-liked">{{topic.createTime}}</view>
+      <view class="news-liked">
+        <text>{{topic.likeNumber}}点赞  {{topic.replyNumber}}评论</text>
+      </view>
+    </view>
+  </view>
+  <view class='list-item' wx:for="{{topic.replyList}}" wx:for-item="reply" wx:key="{{index}}">
+    <view class='weui-flex user-info'>
+      <image src='{{reply.user.avatarUrl}}'></image>
+      <view class="info">
+        <view class='nick-name'>{{reply.user.nickname}}</view>
+        <view class='create-time'>{{reply.createTime}}</view>
+      </view>
+    </view>
+    <view class='content'>
+      {{reply.content}}
+    </view>
+  </view>
+
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <view class='weui-flex footer-box'>
+      <view class='comment' bindtap='comment' data-id='{{topic.id}}'>
+        请输入评论...
+      </view>
+      <image src='/images/comment.png' data-id='{{topic.id}}' bindtap='commentList' hidden="true"></image>
+      <image src="/images/like.png" wx:if="{{!isLike}}" bindtap="like"></image>
+      <image src="/images/like-on.png" wx:if="{{isLike}}" bindtap="like"></image>
+      <image src='/images/liked-off.png' data-id='{{topic.id}}' bindtap='liked' hidden='{{liked}}'></image>
+      <image src='/images/liked-on.png' data-id='{{topic.id}}' hidden='{{!liked}}' bindtap='unliked'></image>
+      <!-- <button class='share' open-type='share'>
+        <image src='/images/share.png' data-id='{{topic.id}}'></image>
+      </button> -->
+    </view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+<!--pages/auth/index.wxml-->
+<view class='container'>
+  <view class="weui-msg">
+    <view class="weui-msg__icon-area">
+      <icon type="info" size="93"></icon>
+    </view>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">未登录</view>
+    </view>
+    <view class="weui-msg__opr-area">
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="showTopTips" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+      </view>
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__text">Copyright © 2020</view>
+      </view>
+    </view>
+  </view>
+</view>

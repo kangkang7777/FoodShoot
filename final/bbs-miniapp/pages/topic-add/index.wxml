@@ -1,0 +1,38 @@
+<!--pages/publish/index.wxml-->
+<view class='container'>
+  <form bindsubmit='saveArticle'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea name="title" class="weui-textarea" placeholder="请输入美食信息详情" style="height: 5.3em" />
+        </view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">美食图片上传</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <view class="weui-uploader__file" bindtap="previewImage" wx:key="*this" wx:for="{{picUrls}}">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                </view>
+              </view>
+              <view class="weui-uploader__input-box">
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+    </view>
+
+    <view class="weui-btn-area">
+      <button type="primary" class="weui-btn" form-type="submit">发布</button>
+    </view>
+  </form>
+
+</view>

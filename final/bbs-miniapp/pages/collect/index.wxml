@@ -1,0 +1,26 @@
+<!--pages/topic/index.wxml-->
+<view class="container">
+  <view wx:for="{{topicList}}" wx:key="{{index}}">
+    <navigator class='news-box' url="/pages/topic-detail/index?id={{item.id}}">
+      <view class='weui-flex user-info'>
+        <image src='{{item.user.avatarUrl}}'></image>
+        <view class="info">
+          <view class='nick-name'>{{item.user.nickname}}</view>
+          <view class='create-time'>{{item.createTime}}</view>
+        </view>
+      </view>
+      <view class="news-summary">
+        <image class="topic-pic" src="{{item}}" wx:for="{{item.picUrls}}"></image>
+      </view>
+      <view class="news-title">
+        {{item.title}}
+      </view>
+      <view class='news-date'>
+        <view class="news-liked">
+          <text>{{item.likeNumber}}点赞    {{item.replyNumber}}评论</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <image class="add" src="/images/add.png" bindtap="addTopic" hidden="true"></image>
+</view>

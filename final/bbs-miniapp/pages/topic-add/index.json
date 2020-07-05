@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发布美食",
+  "usingComponents": {
+    "dialog": "/components/dialog-wxapp/dialog"
+  }
+}

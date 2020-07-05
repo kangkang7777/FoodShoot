@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wfuhui.modules.bbs.dao.ReplyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wfuhui.modules.bbs.entity.ReplyEntity" id="replyMap">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="memberId" column="member_id"/>
+        <result property="topicId" column="topic_id"/>
+        <result property="createTime" column="create_time"/>
+        <association property="user" javaType="com.wfuhui.modules.o2o.entity.UserEntity">
+        	<result property="nickname" column="nickname"/>
+        	<result property="avatarUrl" column="avatar_url"/>
+        </association>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.wfuhui.modules.bbs.entity.ReplyEntity">
+		select * from bbs_reply where id = #{value}
+	</select>
+
+	<select id="queryList" resultMap="replyMap">
+		select * from bbs_reply t left join o2o_user u on t.member_id = u.id 
+		<where>
+			<if test="topicId != null">
+				topic_id = #{topicId}
+			</if>
+		</where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by t.id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from bbs_reply 
+	</select>
+	 
+	<insert id="save" parameterType="com.wfuhui.modules.bbs.entity.ReplyEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into bbs_reply
+		(
+			`content`, 
+			`member_id`, 
+			`topic_id`, 
+			`create_time`
+		)
+		values
+		(
+			#{content}, 
+			#{memberId}, 
+			#{topicId}, 
+			#{createTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.wfuhui.modules.bbs.entity.ReplyEntity">
+		update bbs_reply 
+		<set>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="memberId != null">`member_id` = #{memberId}, </if>
+			<if test="topicId != null">`topic_id` = #{topicId}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bbs_reply where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bbs_reply where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

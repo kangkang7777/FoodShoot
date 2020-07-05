@@ -1,0 +1,12 @@
+<!--pages/topic/index.wxml-->
+<view class="container">
+  <view wx:for="{{followList}}" wx:key="{{index}}">
+      <view class='weui-flex user-info'>
+        <image src='{{item.avatarUrl}}'></image>
+        <view class="info">
+          <view class='nick-name'>{{item.nickname}}</view>
+        </view>
+      </view>
+  </view>
+  <image class="add" src="/images/add.png" bindtap="addTopic" hidden="true"></image>
+</view>

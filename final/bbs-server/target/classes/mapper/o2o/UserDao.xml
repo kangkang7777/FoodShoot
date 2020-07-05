@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wfuhui.modules.o2o.dao.UserDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wfuhui.modules.o2o.entity.UserEntity" id="UserMap">
+        <result property="id" column="id"/>
+        <result property="openid" column="openid"/>
+        <result property="nickname" column="nickname"/>
+        <result property="avatarUrl" column="avatar_url"/>
+        <result property="gender" column="gender"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="userNo" column="user_no"/>
+        <result property="schoolName" column="school_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    
+    <sql id="base_column">
+    	id,openid,nickname,avatar_url,gender,user_no,school_name,mobile,real_name,school_name,user_no,create_time
+    </sql>
+    
+    <select id="queryByOpenid" resultType="com.wfuhui.modules.o2o.entity.UserEntity">
+		select * from o2o_user where openid = #{value}
+	</select>
+	
+	<select id="queryObject" resultType="com.wfuhui.modules.o2o.entity.UserEntity">
+		select * from o2o_user where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.wfuhui.modules.o2o.entity.UserEntity">
+		select <include refid="base_column" /> from o2o_user
+		
+		<where>
+			<if test="nickname != null and nickname != ''">
+				and nickname like '%${nickname}%'
+			</if>
+		</where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from o2o_user 
+		<where>
+			<if test="nickname != null and nickname != ''">
+				and nickname like '%${nickname}%'
+			</if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.wfuhui.modules.o2o.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into o2o_user
+		(
+			`openid`, 
+			`nickname`, 
+			`avatar_url`, 
+			`gender`,
+			`create_time`
+		)
+		values
+		(
+			#{openid}, 
+			#{nickname}, 
+			#{avatarUrl}, 
+			#{gender},
+			#{createTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.wfuhui.modules.o2o.entity.UserEntity">
+		update o2o_user 
+		<set>
+			<if test="openid != null">`openid` = #{openid}, </if>
+			<if test="nickname != null">`nickname` = #{nickname}, </if>
+			<if test="avatarUrl != null">`avatar_url` = #{avatarUrl}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="realName != null">`real_name` = #{realName}, </if>
+			<if test="schoolName != null">`school_name` = #{schoolName}, </if>
+			<if test="userNo != null">`user_no` = #{userNo}, </if>
+			<if test="gender != null">`gender` = #{gender}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from o2o_user where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from o2o_user where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
